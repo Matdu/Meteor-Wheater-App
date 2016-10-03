@@ -20,18 +20,18 @@ Template.myWeatherTemplate.onRendered(function(){
 			success: function(weather) {
 				console.log(weather);
 				var daysQuantity = 3;
-          // html = '<h2><i class="icon-'+weather.code+'"></i> '
+				
           html = '<div class="container"><div class="row">';
+          html += '<div class="col s12">'+weather.city+', '+weather.region+', '+weather.country+'</div>';
           html += '<div class="col s6">'+weather.currently+'</div>';
-          html += '<div class="col s6">'+weather.temp+'&deg;'+weather.units.temp+'<i class="icon-'+weather.code+'"></i></div>';
+          html += '<div class="col s6">'+weather.temp+'&deg;'+weather.units.temp+'<i class="icon-'+weather.code+'" title="'+weather.text+'"></i></div>';
 
           for (var i = 1; i <= daysQuantity; i++) {
           	var forecastDay = new Date (weather.forecast[i].date);
           	html += '<div class="col s6">'+days[forecastDay.getDay()]+'</div>';
-          	html += '<div class="col s6">'+weather.forecast[i].low+'&deg;'+weather.units.temp+' - '+weather.forecast[i].high+'&deg;'+weather.units.temp+'<i class="icon-'+weather.forecast[i].code+'"></i></div>';
+          	html += '<div class="col s6">'+weather.forecast[i].high+'&deg;'+weather.units.temp+' - '+weather.forecast[i].low+'&deg;'+weather.units.temp+'<i class="icon-'+weather.forecast[i].code+'" title="'+weather.forecast[i].text+'"></i></div>';
           }
           html += '</div></div>';
-          // html += '<div class="col s12">'+weather.currently+'</div></div></div>';
 
           $("#weatherDiv").html(html);
       },
