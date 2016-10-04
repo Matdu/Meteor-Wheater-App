@@ -1,4 +1,31 @@
-/* CSS declarations go here */
+/* Content */
+/* Weather Display */
+html {
+	background-color: #f6f6f6;
+	height: 100%;
+}
+.forecast-row{
+	background-color: #f6f6f6;
+	border-bottom: solid 1px #eee;
+}
+.image-overlay {
+	position: relative; 
+	width: 100%;
+}
+.image-text-overlay {
+	position: absolute; 
+	top: 50%; 
+	left: 0; 
+}
+.image-text-overlay span {
+	color: white; 
+	font: bold 24px/45px Helvetica, Sans-Serif; 
+	letter-spacing: -1px;  
+	background: rgb(0, 0, 0); /* fallback color */
+	background: rgba(0, 0, 0, 0.7);
+	padding: 10px
+}
+/* Fonts */
 @font-face {
 font-family: "Roboto";
 src: local(Roboto Thin), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.eot");
