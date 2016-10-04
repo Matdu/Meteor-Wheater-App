@@ -1,9 +1,16 @@
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session'
 import { Weather } from 'meteor/selaias:meteor-simpleweather';
 
 import './main.html';
 
+Template.myWeatherTemplate.onCreated(function () {
+	Session.setDefault('weatherContent', '');
+});
+
 Template.myWeatherTemplate.onRendered(function(){
+	this.weatherContent = new ReactiveVar();
+
 	var geooptions = {
 		enableHighAccuracy: true,
 		timeout: 60000,
@@ -11,44 +18,44 @@ Template.myWeatherTemplate.onRendered(function(){
 	};
 
 	function success(pos) {
-		var days = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
 		var lat = pos.coords.latitude;
 		var lng = pos.coords.longitude;
 		var options = {
 			location: lat + ',' + lng,
 			unit: 'c',
 			success: function(weather) {
-				console.log(weather);
-				var daysQuantity = 3;
-				
-          html = '<div class="container"><div class="row">';
-          html += '<div class="col s12">'+weather.city+', '+weather.region+', '+weather.country+'</div>';
-          html += '<div class="col s6">'+weather.currently+'</div>';
-          html += '<div class="col s6">'+weather.temp+'&deg;'+weather.units.temp+'<i class="icon-'+weather.code+'" title="'+weather.text+'"></i></div>';
+				weather.forecast.splice(0, 1);
+				weather.forecast.splice(3, weather.forecast.length);
+				Session.set('weatherContent', weather);
+			},
+			error: function(error) {
+				Session.set('weatherContent', false);
+			}
+		}
 
-          for (var i = 1; i <= daysQuantity; i++) {
-          	var forecastDay = new Date (weather.forecast[i].date);
-          	html += '<div class="col s6">'+days[forecastDay.getDay()]+'</div>';
-          	html += '<div class="col s6">'+weather.forecast[i].high+'&deg;'+weather.units.temp+' - '+weather.forecast[i].low+'&deg;'+weather.units.temp+'<i class="icon-'+weather.forecast[i].code+'" title="'+weather.forecast[i].text+'"></i></div>';
-          }
-          html += '</div></div>';
+		Weather.options = options;
+		Weather.load();
 
-          $("#weatherDiv").html(html);
-      },
-      error: function(error) {
-      	$("#weatherDiv").html('<p>'+error+'</p>');
-      }
-  }
+	}
 
-  Weather.options = options;
-  Weather.load();
-
-}
-
-function error(err) {
-	console.warn('ERROR(' + err.code + '): ' + err.message);
-}
-if (navigator.geolocation) {
-	navigator.geolocation.getCurrentPosition(success, error, geooptions);
-}
+	function error(err) {
+		console.warn('ERROR(' + err.code + '): ' + err.message);
+	}
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(success, error, geooptions);
+	}
 });
+
+Template.myWeatherTemplate.helpers({
+	currentWeather() {
+		return Session.get('weatherContent');
+	},
+	nextDaysWeather() {
+		return weather.forecast;
+	},
+	forecastDate(date) {
+		var day = new Date(date).getDay();
+		var weekDays = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+		return weekDays[day];
+	}
+})

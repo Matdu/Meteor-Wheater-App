@@ -3,10 +3,28 @@
 </head>
 
 <body>
-    {{>myWeatherTemplate}}
+  {{>myWeatherTemplate}}
 </body>
 
 <template name="myWeatherTemplate">
  <img class="responsive-img" src="http://placehold.it/1920x1080">
- <div id="weatherDiv"></div>
+ <div id="weatherDiv">
+   <div class="container">
+     <div class="row">
+       {{#if currentWeather}}
+       <div class="col s12">{{currentWeather.city}}, {{currentWeather.region}}, {{currentWeather.country}}</div>
+       <div class="col s8">{{currentWeather.currently}}</div>
+       <div class="col s4">{{currentWeather.temp}}&deg;{{currentWeather.units.temp}}
+        <i class="icon-{{currentWeather.code}}" title="{{currentWeather.text}}"></i>
+      </div>
+      {{#each currentWeather.forecast}}
+      <div class="col s6 align-right">{{forecastDate this.date}}</div>
+      <div class="col s6 align-left">{{high}}&deg;{{currentWeather.units.temp}} - {{low}}&deg;{{currentWeather.units.temp}}<i class="icon-{{code}}" title="{{text}}"></i></div>
+      {{/each}}
+      {{else}}
+      <div class="col s12">Ops! Ocorreu um erro ao obter os dados.</div>
+      {{/if}}
+    </div>
+  </div>
+</div>
 </template>
