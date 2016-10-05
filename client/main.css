@@ -6,18 +6,36 @@ html {
 }
 .forecast-row{
 	background-color: #f6f6f6;
-	border-bottom: solid 1px #eee;
+	border-bottom: solid 1px #ccc;
 }
 .image-overlay {
 	position: relative; 
 	width: 100%;
 }
-.image-text-overlay {
+.image-location-overlay {
 	position: absolute; 
-	top: 50%; 
+	top: 75%; 
 	left: 0; 
 }
-.image-text-overlay span {
+.image-forecast-overlay {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	line-height: 0;
+}
+.image-forecast-overlay .temperature {
+	color: white;
+	font: bold 1.8em Helvetica, Sans-Serif;
+	letter-spacing: -1px;
+}
+.image-forecast-overlay .weather {
+	color: white;
+	font: bold 0.5em Helvetica, Sans-Serif;
+	letter-spacing: -1px;
+}
+.image-location-overlay span {
 	color: white; 
 	font: bold 24px/45px Helvetica, Sans-Serif; 
 	letter-spacing: -1px;  
@@ -25,67 +43,70 @@ html {
 	background: rgba(0, 0, 0, 0.7);
 	padding: 10px
 }
+.forecast-content {
+	padding-top: 10px;
+}
 /* Fonts */
 @font-face {
-font-family: "Roboto";
-src: local(Roboto Thin), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.eot");
-src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.ttf") format("truetype");
-font-weight: 200;
+	font-family: "Roboto";
+	src: local(Roboto Thin), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.eot");
+	src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Thin.ttf") format("truetype");
+	font-weight: 200;
 }
 
 @font-face {
-font-family: "Roboto";
-src: local(Roboto Light), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.eot");
-src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.ttf") format("truetype");
-font-weight: 300;
+	font-family: "Roboto";
+	src: local(Roboto Light), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.eot");
+	src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Light.ttf") format("truetype");
+	font-weight: 300;
 }
 
 @font-face {
-font-family: "Roboto";
-src: local(Roboto Regular), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.eot");
-src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.ttf") format("truetype");
-font-weight: 400;
+	font-family: "Roboto";
+	src: local(Roboto Regular), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.eot");
+	src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+	font-weight: 400;
 }
 
 @font-face {
-font-family: "Roboto";
-src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.eot");
-src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.ttf") format("truetype");
-font-weight: 500;
+	font-family: "Roboto";
+	src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.eot");
+	src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Medium.ttf") format("truetype");
+	font-weight: 500;
 }
 
 @font-face {
-font-family: "Roboto";
-src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.eot");
-src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.ttf") format("truetype");
-font-weight: 700;
+	font-family: "Roboto";
+	src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.eot");
+	src: url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.eot?") format("embedded-opentype"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.woff2") format("woff2"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.woff") format("woff"), url("packages/materialize_materialize/dist/fonts/roboto/Roboto-Bold.ttf") format("truetype");
+	font-weight: 700;
 }
 
 @font-face {
-    font-family: 'weather';
-    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');
-    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
-         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'),
-         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),
-         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'weather';
+	src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');
+	src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
+	url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'),
+	url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),
+	url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #weatherDiv {
-  width: 350px;
-  margin: 0px auto;
-  text-align: center;
-  text-transform: uppercase;
+	width: 350px;
+	margin: 0px auto;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 #weatherDiv i {
-  margin: 0;
-  color: #000;
-  font-family: weather;
-  font-size: 22px;
-  font-weight: normal;
-  line-height: 1.0;
+	margin: 0;
+	color: #000;
+	font-family: weather;
+	font-size: 22px;
+	font-weight: normal;
+	line-height: 1.0;
 }
 
 #weatherDiv i.icon-0:before { content: ":"; }

@@ -9,27 +9,22 @@
 <template name="myWeatherTemplate">
   {{#if currentWeather}}
   <div class="image-overlay">
-   <img class="responsive-img" src="http://placehold.it/1920x1080">
-   <h2 class="image-text-overlay">
+   <img class="responsive-img" src="http://lorempixel.com/510/550/city">
+   <h2 class="image-location-overlay">
      <span>{{currentWeather.city}}, {{currentWeather.country}}</span>
+   </h2>
+   <h2 class="image-forecast-overlay">
+     <span class="temperature">{{currentWeather.temp}}&deg;{{currentWeather.units.temp}}</span>
+     <span class="weather">{{currentWeather.text}}</span>
    </h2>
  </div>
  {{/if}}
- <div id="weatherDiv">
+ <div id="weatherDiv" class="forecast-content">
    <div class="container">
      <div class="row">
        {{#if currentWeather}}
+       {{#each currentWeather.forecast}}
        <div class="col s12 forecast-row">
-       <div class="col m8 s6 left-align">{{currentWeather.currently}}</div>
-         <div class="col m4 s6 left-align">
-           {{currentWeather.temp}}&deg;{{currentWeather.units.temp}}
-           <div class="right">
-            <i class="icon-{{currentWeather.code}} right-align" title="{{currentWeather.text}}"></i>
-          </div>
-        </div>
-      </div>
-      {{#each currentWeather.forecast}}
-      <div class="col s12 forecast-row">
         <div class="col s6 left-align">{{forecastDate this.date}}</div>
         <div class="col s6 left-align">
           {{high}}&deg;{{currentWeather.units.temp}} - {{low}}&deg;{{currentWeather.units.temp}}

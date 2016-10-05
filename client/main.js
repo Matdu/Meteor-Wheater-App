@@ -23,9 +23,10 @@ Template.myWeatherTemplate.onRendered(function(){
 		var options = {
 			location: lat + ',' + lng,
 			unit: 'c',
+			lang: 'pt-BR',
 			success: function(weather) {
 				weather.forecast.splice(0, 1);
-				weather.forecast.splice(3, weather.forecast.length);
+				weather.forecast.splice(4, weather.forecast.length);
 				Session.set('weatherContent', weather);
 			},
 			error: function(error) {
